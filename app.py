@@ -45,6 +45,8 @@ def add_contact():
             flash('Error adding contact. Phone number might be duplicate.', 'error')
     return render_template('add_contact.html', form=form)
 
+
+
 @app.route('/update/<int:id>', methods=['GET', 'POST'])
 def update_contact(id):
     contact = db.session.get(Contact, id)
@@ -59,7 +61,7 @@ def update_contact(id):
     
     return render_template('update_contact.html', form=form, contact=contact)
 
-@app.route('/delete/<int:id>')
+@app.route('/api/contacts/<int:id>', methods=['DELETE'])
 def delete_contact(id):
     contact = db.session.get(Contact, id)
     db.session.delete(contact)
